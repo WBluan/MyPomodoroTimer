@@ -1,4 +1,4 @@
-![My pomodoro Timer](https://github.com/WBluan/MyPomodoroTimer/assets/102801492/5f392e3c-acfa-4201-8a99-bfb72aaac2bb)
+![png-logo-readmd](https://github.com/WBluan/MyPomodoroTimer/assets/102801492/a2e65ad8-758d-4524-8346-5c79307b64f4)
 
 # 🍅 
 
