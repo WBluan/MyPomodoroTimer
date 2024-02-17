@@ -45,10 +45,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(16, 186);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 151);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(234, 45);
+            this.label1.Size = new System.Drawing.Size(182, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "Repouso: 05:00";
             // 
@@ -58,19 +57,17 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(16, 112);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(12, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(308, 45);
+            this.label2.Size = new System.Drawing.Size(242, 35);
             this.label2.TabIndex = 1;
             this.label2.Text = "Concentração: 25:00";
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(159, 399);
-            this.btnIniciar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnIniciar.Location = new System.Drawing.Point(119, 324);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(112, 50);
+            this.btnIniciar.Size = new System.Drawing.Size(84, 41);
             this.btnIniciar.TabIndex = 2;
             this.btnIniciar.Text = "Iniciar";
             this.btnIniciar.UseVisualStyleBackColor = true;
@@ -83,10 +80,9 @@
             // 
             // btnRestart
             // 
-            this.btnRestart.Location = new System.Drawing.Point(291, 399);
-            this.btnRestart.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRestart.Location = new System.Drawing.Point(218, 324);
             this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(112, 50);
+            this.btnRestart.Size = new System.Drawing.Size(84, 41);
             this.btnRestart.TabIndex = 4;
             this.btnRestart.Text = "Disable";
             this.btnRestart.UseVisualStyleBackColor = true;
@@ -94,10 +90,9 @@
             // 
             // btnRest
             // 
-            this.btnRest.Location = new System.Drawing.Point(24, 401);
-            this.btnRest.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRest.Location = new System.Drawing.Point(18, 326);
             this.btnRest.Name = "btnRest";
-            this.btnRest.Size = new System.Drawing.Size(112, 50);
+            this.btnRest.Size = new System.Drawing.Size(84, 41);
             this.btnRest.TabIndex = 5;
             this.btnRest.Text = "Descansar";
             this.btnRest.UseVisualStyleBackColor = true;
@@ -105,21 +100,21 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(419, 464);
+            this.ClientSize = new System.Drawing.Size(314, 377);
             this.Controls.Add(this.btnRest);
             this.Controls.Add(this.btnRestart);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "My Pomodoro Timer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
