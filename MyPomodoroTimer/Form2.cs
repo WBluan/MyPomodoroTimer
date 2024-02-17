@@ -43,6 +43,9 @@ namespace MyPomodoroTimer
             {
                 if (isPaused)
                 {
+                    isPaused = false;
+                    btnPauseFrm2.Enabled = true;
+                    btnStartFrm2.Enabled = false;
                     timerForm2.Start();
                 }
                 else
@@ -65,8 +68,9 @@ namespace MyPomodoroTimer
             }
         }
 
-        private void StartResting()
+        public void StartResting()
         {
+            lblWorkF2.Text = "05:00";
             RestartTime();
             isPaused = false;
             isWorking = false;
@@ -75,9 +79,12 @@ namespace MyPomodoroTimer
             timerForm2.Start();
         }
 
-        private void StartWorking()
+        public void StartWorking()
         {
+            lblWorkF2.Text = "25:00";
             RestartTime();
+            isPaused = false;
+            btnPauseFrm2.Enabled = true;
             isWorking = true;
             btnStartFrm2.Enabled = false;
             timerForm2.Start();
@@ -138,10 +145,31 @@ namespace MyPomodoroTimer
 
         private void btnPauseFrm2_Click(object sender, EventArgs e)
         {
-            isPaused = true;
-            timerForm2.Stop();
-            btnStartFrm2.Enabled = true;
-            btnPauseFrm2.Enabled = false;
+            PauseWork();
+        }
+
+        private void PauseWork()
+        {
+           isPaused = true;
+           timerForm2.Stop();
+           btnStartFrm2.Enabled = true;
+           btnPauseFrm2.Enabled = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            Form1 form1 = new Form1();
+            form1.Show();
+            StopPomodoro();
+
+
+
+        }
+
+        private void StopPomodoro()
+        {
+            this.Close();
         }
     }
 }

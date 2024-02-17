@@ -25,44 +25,10 @@ namespace MyPomodoroTimer
         public Form1()
         {
             InitializeComponent();
-            btnRest.Hide();
-            RestartTime();
+            btnRestart.Enabled = false;
         }
 
-        private void ResetTimer()
-        {
-            StartWorking();
-            UpdateTimerDisplay(label2);
-            btnRest.Visible = false;
-            btnIniciar.Visible = true;
-        }
-        private void StartWorking()
-        {
-            RestartTime();
-            isWorking = true;
-            UpdateTimerDisplay(label2);
-            btnIniciar.Enabled = false;
-            btnIniciar.Visible = true;
-            btnRest.Visible = false;
-            btnPause.Enabled = true;
-            btnRestart.Enabled = true;
-            timer1.Start();
-        }
 
-        private void StartResting()
-        {
-            RestartTime();
-            isPaused = false;
-            isWorking = false;
-            UpdateTimerDisplay(label2);
-            btnIniciar.Hide();
-            btnIniciar.Enabled = false;
-            btnRest.Visible = true;
-            btnRest.Enabled = false;
-            btnPause.Enabled = true;
-            btnRestart.Enabled = true;
-            timer1.Start();
-        }
 
         public void UpdateTimerDisplay(Label labelUpdate)
         {
@@ -81,18 +47,10 @@ namespace MyPomodoroTimer
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            if(isPaused == true)
-            {
-                isWorking=true;
-                isPaused = false;
-                timer1.Start();
-            }
-            else
-            {
-                label1.Text = "Repouso: 05:00";
-                StartWorking();
-                UpdateTimerDisplay(label2);
-            }
+            this.Hide();
+            Form2 form2 = new Form2();
+            form2.StartWorking();
+            form2.Show();
         }
 
         public void RestartTime()
@@ -103,32 +61,17 @@ namespace MyPomodoroTimer
 
         private void btnRest_Click(object sender, EventArgs e)
         {
-            if (isPaused == true)
-            {
-                isWorking = false;
-                isPaused = false;
-                timer1.Start();
-            }
-            else
-            {
-                label2.Text = "Concentração: 25:00";
-                StartResting();
-                isWorking = false;
-                UpdateTimerDisplay(label1);
-            }
+            this.Hide();
+            Form2 form2 = new Form2();
+            form2.StartResting();
+            form2.Show();
         }
 
-        private void btnPause_Click(object sender, EventArgs e)
-        {
-            isPaused = true;
-            timer1.Stop();
-            btnIniciar.Enabled = true;
-            btnPause.Enabled = true;
-        }
+
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
-            ResetTimer();
+
         }
 
 
