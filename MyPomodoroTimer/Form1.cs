@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,27 +18,31 @@ namespace MyPomodoroTimer
         private int minutesRest;
         private int secondsLeft;
         private bool isWorking;
+        private bool isPaused;
 
         CustomLabel newLabel = new CustomLabel();
         public Form1()
         {
             InitializeComponent();
-            minutesWork = 25 * 60;
-            minutesRest = 5 * 60;
+            btnRest.Hide();
+            RestartTime();
         }
 
         private void ResetTimer()
         {
-            secondsLeft = 1500;
             StartWorking();
             UpdateTimerDisplay();
+            btnRest.Visible = false;
+            btnIniciar.Visible = true;
         }
         private void StartWorking()
         {
-            secondsLeft = 1500; // 25 minutes
+            RestartTime();
             isWorking = true;
             UpdateTimerDisplay();
             btnIniciar.Enabled = false;
+            btnIniciar.Visible = true;
+            btnRest.Visible = false;
             btnPause.Enabled = true;
             btnRestart.Enabled = true;
             timer1.Start();
@@ -45,10 +50,14 @@ namespace MyPomodoroTimer
 
         private void StartResting()
         {
-            secondsLeft = 300;
+            RestartTime();
+            isPaused = false;
             isWorking = false;
-            UpdateTimerResting();
+            UpdateTimerDisplay();
+            btnIniciar.Hide();
             btnIniciar.Enabled = false;
+            btnRest.Visible = true;
+            btnRest.Enabled = false;
             btnPause.Enabled = true;
             btnRestart.Enabled = true;
             timer1.Start();
@@ -59,24 +68,58 @@ namespace MyPomodoroTimer
             int totalSeconds = isWorking ? minutesWork : minutesRest;
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
-            label2.Text = string.Format( "Concentração: {0:00}:{1:00}", minutes, seconds);
-        }
-        private void UpdateTimerResting()
-        {
-            int minutes = minutesWork / 60;
-            int seconds = secondsLeft % 60;
-            label2.Text = $"Concentração: {minutesWork:D2}:{minutesWork:D2}";
+            if(isWorking == true)
+            {
+                label2.Text = string.Format("Concentração: {0:00}:{1:00}", minutes, seconds);
+            }
+            else
+            {
+                label1.Text = string.Format("Repouso: {0:00}:{1:00}", minutes, seconds);
+            }
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            StartWorking();
-            timer1.Start();
-            UpdateTimerDisplay();
+            if(isPaused == true)
+            {
+                isWorking=true;
+                isPaused = false;
+                timer1.Start();
+            }
+            else
+            {
+                label1.Text = "Repouso: 05:00";
+                StartWorking();
+                UpdateTimerDisplay();
+            }
+        }
+
+        private void RestartTime()
+        {
+            minutesWork = 25 * 60;
+            minutesRest = 5 * 60;
+        }
+
+        private void btnRest_Click(object sender, EventArgs e)
+        {
+            if (isPaused == true)
+            {
+                isWorking = false;
+                isPaused = false;
+                timer1.Start();
+            }
+            else
+            {
+                label2.Text = "Concentração: 25:00";
+                StartResting();
+                isWorking = false;
+                UpdateTimerDisplay();
+            }
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
+            isPaused = true;
             timer1.Stop();
             btnIniciar.Enabled = true;
             btnPause.Enabled = true;
@@ -84,6 +127,7 @@ namespace MyPomodoroTimer
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
+            ResetTimer();
         }
 
 
@@ -96,11 +140,11 @@ namespace MyPomodoroTimer
                     minutesWork--;
                     UpdateTimerDisplay();
                 }
-                else
+                else if(minutesWork == 0)
                 {
-                    isWorking = false;
-                    minutesRest = 5 * 60;
-                    UpdateTimerDisplay();
+                    btnIniciar.Hide();
+                    btnRest.Show();
+                    btnRest.Enabled = true;
                 }
             }
            else
@@ -110,14 +154,16 @@ namespace MyPomodoroTimer
                     minutesRest--;
                     UpdateTimerDisplay();
                 }
-                else
+                else if(minutesRest == 0)
                 {
-                    isWorking = true;
-                    minutesWork = 25 * 60;
-                    UpdateTimerDisplay();
+                    btnRest.Hide();
+                    btnIniciar.Show();
+                    btnIniciar.Enabled = true;
                 }
             }
         }
+
+
     }
 }
 
