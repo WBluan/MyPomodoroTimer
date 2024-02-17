@@ -15,6 +15,7 @@ namespace MyPomodoroTimer
         public Form2()
         {
             InitializeComponent();
+
         }
 
         private void InitializePosition()

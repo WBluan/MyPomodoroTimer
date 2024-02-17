@@ -14,8 +14,8 @@ namespace MyPomodoroTimer
 {
     public partial class Form1 : Form
     {
-        private int minutesWork;
-        private int minutesRest;
+        public int minutesWork;
+        public int minutesRest;
         private int secondsLeft;
         private bool isWorking;
         private bool isPaused;
