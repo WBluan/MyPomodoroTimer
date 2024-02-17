@@ -37,6 +37,7 @@
             this.btnPause = new System.Windows.Forms.Button();
             this.btnRestart = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.btnRest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -98,6 +99,16 @@
             this.btnRestart.UseVisualStyleBackColor = true;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
+            // btnRest
+            // 
+            this.btnRest.Location = new System.Drawing.Point(119, 324);
+            this.btnRest.Name = "btnRest";
+            this.btnRest.Size = new System.Drawing.Size(84, 41);
+            this.btnRest.TabIndex = 5;
+            this.btnRest.Text = "Descansar";
+            this.btnRest.UseVisualStyleBackColor = true;
+            this.btnRest.Click += new System.EventHandler(this.btnRest_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -105,6 +116,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(314, 377);
+            this.Controls.Add(this.btnRest);
             this.Controls.Add(this.btnRestart);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnIniciar);
@@ -128,6 +140,7 @@
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnRestart;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button btnRest;
     }
 }
 
