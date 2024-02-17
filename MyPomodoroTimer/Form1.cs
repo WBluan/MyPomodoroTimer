@@ -14,8 +14,9 @@ namespace MyPomodoroTimer
 {
     public partial class Form1 : Form
     {
-        private int minutesWork;
-        private int minutesRest;
+        Form2 form2 = new Form2(); 
+        public int minutesWork;
+        public int minutesRest;
         private int secondsLeft;
         private bool isWorking;
         private bool isPaused;
@@ -31,7 +32,7 @@ namespace MyPomodoroTimer
         private void ResetTimer()
         {
             StartWorking();
-            UpdateTimerDisplay();
+            UpdateTimerDisplay(label2);
             btnRest.Visible = false;
             btnIniciar.Visible = true;
         }
@@ -39,7 +40,7 @@ namespace MyPomodoroTimer
         {
             RestartTime();
             isWorking = true;
-            UpdateTimerDisplay();
+            UpdateTimerDisplay(label2);
             btnIniciar.Enabled = false;
             btnIniciar.Visible = true;
             btnRest.Visible = false;
@@ -53,7 +54,7 @@ namespace MyPomodoroTimer
             RestartTime();
             isPaused = false;
             isWorking = false;
-            UpdateTimerDisplay();
+            UpdateTimerDisplay(label2);
             btnIniciar.Hide();
             btnIniciar.Enabled = false;
             btnRest.Visible = true;
@@ -63,14 +64,14 @@ namespace MyPomodoroTimer
             timer1.Start();
         }
 
-        private void UpdateTimerDisplay()
+        public void UpdateTimerDisplay(Label labelUpdate)
         {
             int totalSeconds = isWorking ? minutesWork : minutesRest;
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
             if(isWorking == true)
             {
-                label2.Text = string.Format("Concentração: {0:00}:{1:00}", minutes, seconds);
+                labelUpdate.Text = string.Format("Concentração: {0:00}:{1:00}", minutes, seconds);
             }
             else
             {
@@ -90,11 +91,11 @@ namespace MyPomodoroTimer
             {
                 label1.Text = "Repouso: 05:00";
                 StartWorking();
-                UpdateTimerDisplay();
+                UpdateTimerDisplay(label2);
             }
         }
 
-        private void RestartTime()
+        public void RestartTime()
         {
             minutesWork = 25 * 60;
             minutesRest = 5 * 60;
@@ -113,7 +114,7 @@ namespace MyPomodoroTimer
                 label2.Text = "Concentração: 25:00";
                 StartResting();
                 isWorking = false;
-                UpdateTimerDisplay();
+                UpdateTimerDisplay(label1);
             }
         }
 
@@ -131,14 +132,14 @@ namespace MyPomodoroTimer
         }
 
 
-        private void timer1_Tick_1(object sender, EventArgs e)
+        public void timer1_Tick_1(object sender, EventArgs e)
         {
            if(isWorking)
             {
                 if(minutesWork > 0)
                 {
                     minutesWork--;
-                    UpdateTimerDisplay();
+                    UpdateTimerDisplay(label2);
                 }
                 else if(minutesWork == 0)
                 {
@@ -152,7 +153,7 @@ namespace MyPomodoroTimer
                 if(minutesRest > 0)
                 {
                     minutesRest--;
-                    UpdateTimerDisplay();
+                    UpdateTimerDisplay(label1);
                 }
                 else if(minutesRest == 0)
                 {
