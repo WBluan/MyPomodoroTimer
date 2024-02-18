@@ -37,6 +37,8 @@
             this.btnRestart = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.btnRest = new System.Windows.Forms.Button();
+            this.btnLinkedinFrm1 = new System.Windows.Forms.Button();
+            this.btnGithubFrm1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -98,6 +100,44 @@
             this.btnRest.UseVisualStyleBackColor = true;
             this.btnRest.Click += new System.EventHandler(this.btnRest_Click);
             // 
+            // btnLinkedinFrm1
+            // 
+            this.btnLinkedinFrm1.BackColor = System.Drawing.Color.Transparent;
+            this.btnLinkedinFrm1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLinkedinFrm1.BackgroundImage")));
+            this.btnLinkedinFrm1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLinkedinFrm1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnLinkedinFrm1.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.btnLinkedinFrm1.FlatAppearance.BorderSize = 0;
+            this.btnLinkedinFrm1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnLinkedinFrm1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnLinkedinFrm1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLinkedinFrm1.Location = new System.Drawing.Point(243, 12);
+            this.btnLinkedinFrm1.Name = "btnLinkedinFrm1";
+            this.btnLinkedinFrm1.Size = new System.Drawing.Size(33, 34);
+            this.btnLinkedinFrm1.TabIndex = 6;
+            this.btnLinkedinFrm1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLinkedinFrm1.UseVisualStyleBackColor = false;
+            this.btnLinkedinFrm1.Click += new System.EventHandler(this.btnLinkedinFrm1_Click);
+            // 
+            // btnGithubFrm1
+            // 
+            this.btnGithubFrm1.BackColor = System.Drawing.Color.Transparent;
+            this.btnGithubFrm1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGithubFrm1.BackgroundImage")));
+            this.btnGithubFrm1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGithubFrm1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnGithubFrm1.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen;
+            this.btnGithubFrm1.FlatAppearance.BorderSize = 0;
+            this.btnGithubFrm1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnGithubFrm1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnGithubFrm1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGithubFrm1.Location = new System.Drawing.Point(280, 7);
+            this.btnGithubFrm1.Name = "btnGithubFrm1";
+            this.btnGithubFrm1.Size = new System.Drawing.Size(37, 44);
+            this.btnGithubFrm1.TabIndex = 7;
+            this.btnGithubFrm1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGithubFrm1.UseVisualStyleBackColor = false;
+            this.btnGithubFrm1.Click += new System.EventHandler(this.btnGithubFrm1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -105,6 +145,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(314, 377);
+            this.Controls.Add(this.btnGithubFrm1);
+            this.Controls.Add(this.btnLinkedinFrm1);
             this.Controls.Add(this.btnRest);
             this.Controls.Add(this.btnRestart);
             this.Controls.Add(this.btnIniciar);
@@ -129,6 +171,8 @@
         private System.Windows.Forms.Button btnRestart;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button btnRest;
+        private System.Windows.Forms.Button btnLinkedinFrm1;
+        private System.Windows.Forms.Button btnGithubFrm1;
     }
 }
 
