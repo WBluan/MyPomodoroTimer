@@ -62,8 +62,8 @@ namespace MyPomodoroTimer
 
         public void RestartTime(int workValue, int restValue)
         {
-            _minutesWork = workValue * 1;
-            _minutesRest = restValue * 1;
+            _minutesWork = workValue * 60;
+            _minutesRest = restValue * 60;
         }
 
         private void btnRest_Click(object sender, EventArgs e)
