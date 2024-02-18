@@ -48,6 +48,8 @@ namespace MyPomodoroTimer
         {
             this.Hide();
             Form2 form2 = new Form2();
+            form2.minutesWork = _minutesWork;
+            form2.minutesRest = _minutesRest;
             form2.StartWorking();
             form2.Show();
         }
@@ -60,8 +62,8 @@ namespace MyPomodoroTimer
 
         public void RestartTime(int workValue, int restValue)
         {
-            _minutesWork = workValue * 60;
-            _minutesRest = restValue * 60;
+            _minutesWork = workValue * 1;
+            _minutesRest = restValue * 1;
         }
 
         private void btnRest_Click(object sender, EventArgs e)
