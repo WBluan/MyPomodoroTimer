@@ -17,8 +17,8 @@ namespace MyPomodoroTimer
     {
         MyPages pages = new MyPages();
         Form2 form2 = new Form2(); 
-        public int minutesWork;
-        public int minutesRest;
+        public int _minutesWork;
+        public int _minutesRest;
         private int secondsLeft;
         private bool isWorking;
         private bool isPaused;
@@ -27,39 +27,43 @@ namespace MyPomodoroTimer
         public Form1()
         {
             InitializeComponent();
-            btnRestart.Enabled = false;
             this.MaximizeBox = false;
         }
 
 
 
-        public void UpdateTimerDisplay(Label labelUpdate)
+        public void UpdateTimerDisplay()
         {
-            int totalSeconds = isWorking ? minutesWork : minutesRest;
-            int minutes = totalSeconds / 60;
-            int seconds = totalSeconds % 60;
-            if(isWorking == true)
-            {
-                labelUpdate.Text = string.Format("Concentração: {0:00}:{1:00}", minutes, seconds);
-            }
-            else
-            {
-                label1.Text = string.Format("Repouso: {0:00}:{1:00}", minutes, seconds);
-            }
+            int totalSeconds = isWorking ? _minutesWork : _minutesRest;
+            int minutesWork = _minutesWork / 60;
+            int secondsWork = _minutesWork % 60;
+            int minutesRest= _minutesRest / 60;
+            int secondsRest = _minutesRest % 60;
+            
+            label2.Text = string.Format("Concentração: {0:00}:{1:00}", minutesWork, secondsWork);
+            label1.Text = string.Format("Repouso: {0:00}:{1:00}", minutesRest, secondsRest);
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             this.Hide();
             Form2 form2 = new Form2();
+            form2.minutesWork = _minutesWork;
+            form2.minutesRest = _minutesRest;
             form2.StartWorking();
             form2.Show();
         }
-
-        public void RestartTime()
+        private void btnConfig_Click(object sender, EventArgs e)
         {
-            minutesWork = 25 * 60;
-            minutesRest = 5 * 60;
+            FromConfig formConfig = new FromConfig();
+            formConfig.form1 = this;
+            formConfig.Show();
+        }
+
+        public void RestartTime(int workValue, int restValue)
+        {
+            _minutesWork = workValue * 1;
+            _minutesRest = restValue * 1;
         }
 
         private void btnRest_Click(object sender, EventArgs e)
@@ -72,43 +76,9 @@ namespace MyPomodoroTimer
 
 
 
-        private void btnRestart_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
-        public void timer1_Tick_1(object sender, EventArgs e)
-        {
-           if(isWorking)
-            {
-                if(minutesWork > 0)
-                {
-                    minutesWork--;
-                    UpdateTimerDisplay(label2);
-                }
-                else if(minutesWork == 0)
-                {
-                    btnIniciar.Hide();
-                    btnRest.Show();
-                    btnRest.Enabled = true;
-                }
-            }
-           else
-            {
-                if(minutesRest > 0)
-                {
-                    minutesRest--;
-                    UpdateTimerDisplay(label1);
-                }
-                else if(minutesRest == 0)
-                {
-                    btnRest.Hide();
-                    btnIniciar.Show();
-                    btnIniciar.Enabled = true;
-                }
-            }
-        }
+      
 
         private void btnLinkedinFrm1_Click(object sender, EventArgs e)
         {
@@ -119,6 +89,9 @@ namespace MyPomodoroTimer
         {
             pages.GoToPage(pages.Github);
         }
+
+
+
     }
 }
 

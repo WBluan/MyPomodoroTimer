@@ -12,8 +12,10 @@ namespace MyPomodoroTimer
 {
     public partial class Form2 : Form
     {
-        private int minutesWork;
-        private int minutesRest;
+        public int minutesWork;
+        public int minutesRest;
+        private int trabalhoAtual;
+        private int repousoAtual;
         private bool isWorking;
         private bool isPaused;
         public Form2()
@@ -33,8 +35,16 @@ namespace MyPomodoroTimer
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
             InitializePosition();
+            if(minutesRest == 0 && minutesWork == 0)
+            {
+                minutesWork = 25*60;
+                minutesRest = 5*60;
+            }
+            trabalhoAtual = minutesWork;
+            repousoAtual = minutesRest;
+            UpdateTimerDisplay(lblWorkF2);
+
         }
 
         private void btnStartFrm2_Click(object sender, EventArgs e)
@@ -58,6 +68,7 @@ namespace MyPomodoroTimer
             {
                 if (isPaused)
                 {
+                    isPaused = false;
                     timerForm2.Start();
                 }
                 else
@@ -70,29 +81,29 @@ namespace MyPomodoroTimer
 
         public void StartResting()
         {
-            lblWorkF2.Text = "05:00";
+            UpdateTimerDisplay(lblWorkF2);
+            lblWorkF2.ForeColor = Color.Green;
             RestartTime();
             isPaused = false;
             isWorking = false;
-            btnStartFrm2.Enabled = false;
             btnPauseFrm2.Enabled = true;
             timerForm2.Start();
         }
 
         public void StartWorking()
         {
-            lblWorkF2.Text = "25:00";
+            UpdateTimerDisplay(lblWorkF2);
+            lblWorkF2.ForeColor = Color.Black;
             RestartTime();
             isPaused = false;
             btnPauseFrm2.Enabled = true;
             isWorking = true;
-            btnStartFrm2.Enabled = false;
             timerForm2.Start();
         }
 
         private void UpdateTimerDisplay(Label lblUpdate)
         {
-            int totalSeconds = isWorking ? minutesWork : minutesRest;
+            int totalSeconds = isWorking ? trabalhoAtual : repousoAtual;
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
 
@@ -108,20 +119,20 @@ namespace MyPomodoroTimer
 
         private void RestartTime()
         {
-            minutesRest = 5 * 60;
-            minutesWork = 25 * 60;
+            trabalhoAtual = minutesWork;
+            repousoAtual = minutesRest;
         }
 
         private void timerForm2_Tick(object sender, EventArgs e)
         {
             if(isWorking)
             {
-                if(minutesWork > 0)
+                if(trabalhoAtual > 0)
                 {
-                   minutesWork--;
+                   trabalhoAtual--;
                    UpdateTimerDisplay(lblWorkF2);
                 } 
-                else if (minutesWork == 0)
+                else if (trabalhoAtual == 0)
                 {
                     isWorking = false;
                     timerForm2.Stop();
@@ -129,13 +140,13 @@ namespace MyPomodoroTimer
             }
             else
             {
-                if(minutesRest > 0)
+                if(repousoAtual > 0)
                 {
-                    minutesRest--;
-                    lblWorkF2.ForeColor = Color.Green;
+                    repousoAtual--;
+                    
                     UpdateTimerDisplay(lblWorkF2);
                 }
-                else if(minutesRest == 0)
+                else if(repousoAtual == 0)
                 {
                     isWorking = true;
                     timerForm2.Stop();

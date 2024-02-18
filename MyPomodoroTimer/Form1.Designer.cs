@@ -34,7 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnRestart = new System.Windows.Forms.Button();
+            this.btnConfig = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.btnRest = new System.Windows.Forms.Button();
             this.btnLinkedinFrm1 = new System.Windows.Forms.Button();
@@ -78,17 +78,16 @@
             // timer1
             // 
             this.timer1.Interval = 1500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
-            // btnRestart
+            // btnConfig
             // 
-            this.btnRestart.Location = new System.Drawing.Point(218, 324);
-            this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(84, 41);
-            this.btnRestart.TabIndex = 4;
-            this.btnRestart.Text = "Disable";
-            this.btnRestart.UseVisualStyleBackColor = true;
-            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
+            this.btnConfig.Location = new System.Drawing.Point(218, 324);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(84, 41);
+            this.btnConfig.TabIndex = 4;
+            this.btnConfig.Text = "Configurações";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
             // btnRest
             // 
@@ -148,7 +147,7 @@
             this.Controls.Add(this.btnGithubFrm1);
             this.Controls.Add(this.btnLinkedinFrm1);
             this.Controls.Add(this.btnRest);
-            this.Controls.Add(this.btnRestart);
+            this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -168,7 +167,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnRestart;
+        private System.Windows.Forms.Button btnConfig;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button btnRest;
         private System.Windows.Forms.Button btnLinkedinFrm1;
