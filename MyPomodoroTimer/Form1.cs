@@ -1,4 +1,5 @@
 ﻿using MyPomodoroTimer.Components;
+using MyPomodoroTimer.Route;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace MyPomodoroTimer
 {
     public partial class Form1 : Form
     {
+        MyPages pages = new MyPages();
         Form2 form2 = new Form2(); 
         public int minutesWork;
         public int minutesRest;
@@ -26,6 +28,7 @@ namespace MyPomodoroTimer
         {
             InitializeComponent();
             btnRestart.Enabled = false;
+            this.MaximizeBox = false;
         }
 
 
@@ -107,7 +110,15 @@ namespace MyPomodoroTimer
             }
         }
 
+        private void btnLinkedinFrm1_Click(object sender, EventArgs e)
+        {
+            pages.GoToPage(pages.Linkedin);
+        }
 
+        private void btnGithubFrm1_Click(object sender, EventArgs e)
+        {
+            pages.GoToPage(pages.Github);
+        }
     }
 }
 
