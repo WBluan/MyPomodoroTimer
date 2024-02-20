@@ -70,15 +70,12 @@ namespace MyPomodoroTimer
         {
             this.Hide();
             Form2 form2 = new Form2();
+            form2.minutesWork = _minutesWork;
+            form2.minutesRest = _minutesRest;
             form2.StartResting();
             form2.Show();
         }
 
-
-
-
-
-      
 
         private void btnLinkedinFrm1_Click(object sender, EventArgs e)
         {

@@ -34,13 +34,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8C630161155F03A7E3A6772D5C71D150"
+        "OwnerKey" = "8:_4013BE76F92E4D70827DAFC3584C7BF4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4013BE76F92E4D70827DAFC3584C7BF4"
+        "OwnerKey" = "8:_8C630161155F03A7E3A6772D5C71D150"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -61,6 +61,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -77,6 +85,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -212,7 +228,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:MyPomodoroSetup"
+        "ProductName" = "8:My Pomodoro Timer"
         "ProductCode" = "8:{30389993-F9B3-4B23-9BA5-648FCD49346F}"
         "PackageCode" = "8:{3EA7EF5D-1637-4257-A51A-5B36B53DBAE4}"
         "UpgradeCode" = "8:{6A6D33AE-3E97-49AC-B59E-9731D6974E96}"
@@ -225,7 +241,7 @@
         "Manufacturer" = "8:Luan Weber"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:MyPomodoroSetup"
+        "Title" = "8:My Pomodoro Timer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Luan Weber"
         "Keywords" = "8:"
@@ -763,7 +779,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4013BE76F92E4D70827DAFC3584C7BF4"
             {
-            "SourcePath" = "8:..\\MyPomodoroTimer\\obj\\Release\\MyPomodoroTimer.exe"
+            "SourcePath" = "8:..\\MyPomodoroTimer\\obj\\Debug\\MyPomodoroTimer.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C8F26569A58F40EAA48062A54701FFBB"

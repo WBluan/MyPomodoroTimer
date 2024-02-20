@@ -19,6 +19,7 @@ namespace MyPomodoroTimer
         public FromConfig()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -28,6 +29,12 @@ namespace MyPomodoroTimer
             form1.RestartTime(tempoTrabalhoEscolhido, tempoRepousoEscolhido);
             form1.UpdateTimerDisplay();
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            form1.Show();
         }
     }
 }
