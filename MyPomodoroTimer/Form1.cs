@@ -22,6 +22,7 @@ namespace MyPomodoroTimer
         private int secondsLeft;
         private bool isWorking;
         private bool isPaused;
+        public bool configAberta = false;
 
         CustomLabel newLabel = new CustomLabel();
         public Form1()
@@ -55,9 +56,15 @@ namespace MyPomodoroTimer
         }
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            FromConfig formConfig = new FromConfig();
-            formConfig.form1 = this;
-            formConfig.Show();
+            
+            if(!configAberta)
+            {
+                FromConfig formConfig = new FromConfig();
+                formConfig.form1 = this;
+                formConfig.Show();
+                configAberta = true;
+
+            }
         }
 
         public void RestartTime(int workValue, int restValue)
@@ -75,8 +82,6 @@ namespace MyPomodoroTimer
             form2.StartResting();
             form2.Show();
         }
-
-
         private void btnLinkedinFrm1_Click(object sender, EventArgs e)
         {
             pages.GoToPage(pages.Linkedin);
@@ -86,9 +91,6 @@ namespace MyPomodoroTimer
         {
             pages.GoToPage(pages.Github);
         }
-
-
-
     }
 }
 

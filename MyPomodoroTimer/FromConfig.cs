@@ -12,7 +12,7 @@ namespace MyPomodoroTimer
 {
     public partial class FromConfig : Form
     {
-
+        public bool isOpen = false;
         public int tempoTrabalhoEscolhido;
         public int tempoRepousoEscolhido;
         public Form1 form1 = new Form1();
@@ -20,7 +20,8 @@ namespace MyPomodoroTimer
         {
             InitializeComponent();
             this.MaximizeBox = false;
-        }
+            isOpen = false;
+    }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -35,6 +36,11 @@ namespace MyPomodoroTimer
         {
             this.Close();
             form1.Show();
+        }
+
+        private void FromConfig_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form1.configAberta = false;
         }
     }
 }
