@@ -1,14 +1,6 @@
 ﻿using MyPomodoroTimer.Components;
 using MyPomodoroTimer.Route;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyPomodoroTimer
@@ -19,12 +11,8 @@ namespace MyPomodoroTimer
         Form2 form2 = new Form2(); 
         public int _minutesWork;
         public int _minutesRest;
-        private int secondsLeft;
-        private bool isWorking;
-        private bool isPaused;
         public bool configAberta = false;
 
-        CustomLabel newLabel = new CustomLabel();
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +23,6 @@ namespace MyPomodoroTimer
 
         public void UpdateTimerDisplay()
         {
-            int totalSeconds = isWorking ? _minutesWork : _minutesRest;
             int minutesWork = _minutesWork / 60;
             int secondsWork = _minutesWork % 60;
             int minutesRest= _minutesRest / 60;
@@ -69,8 +56,8 @@ namespace MyPomodoroTimer
 
         public void RestartTime(int workValue, int restValue)
         {
-            _minutesWork = workValue * 60;
-            _minutesRest = restValue * 60;
+            _minutesWork = workValue * 1;
+            _minutesRest = restValue * 1;
         }
 
         private void btnRest_Click(object sender, EventArgs e)

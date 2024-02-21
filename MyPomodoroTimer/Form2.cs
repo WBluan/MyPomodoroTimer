@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyPomodoroTimer
@@ -55,7 +49,7 @@ namespace MyPomodoroTimer
                 {
                     isPaused = false;
                     btnPauseFrm2.Enabled = true;
-                    btnStartFrm2.Enabled = false;
+                    //btnStartFrm2.Enabled = false;
                     timerForm2.Start();
                 }
                 else
@@ -69,6 +63,7 @@ namespace MyPomodoroTimer
                 if (isPaused)
                 {
                     isPaused = false;
+                    btnPauseFrm2.Enabled = true;
                     timerForm2.Start();
                 }
                 else
@@ -173,9 +168,6 @@ namespace MyPomodoroTimer
             Form1 form1 = new Form1();
             form1.Show();
             StopPomodoro();
-
-
-
         }
 
         private void StopPomodoro()
