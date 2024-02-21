@@ -78,6 +78,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FromConfig.resx">
       <DependentUpon>FromConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

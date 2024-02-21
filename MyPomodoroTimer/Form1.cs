@@ -1,14 +1,6 @@
 ﻿using MyPomodoroTimer.Components;
 using MyPomodoroTimer.Route;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyPomodoroTimer
@@ -19,11 +11,8 @@ namespace MyPomodoroTimer
         Form2 form2 = new Form2(); 
         public int _minutesWork;
         public int _minutesRest;
-        private int secondsLeft;
-        private bool isWorking;
-        private bool isPaused;
+        public bool configAberta = false;
 
-        CustomLabel newLabel = new CustomLabel();
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +23,6 @@ namespace MyPomodoroTimer
 
         public void UpdateTimerDisplay()
         {
-            int totalSeconds = isWorking ? _minutesWork : _minutesRest;
             int minutesWork = _minutesWork / 60;
             int secondsWork = _minutesWork % 60;
             int minutesRest= _minutesRest / 60;
@@ -55,9 +43,15 @@ namespace MyPomodoroTimer
         }
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            FromConfig formConfig = new FromConfig();
-            formConfig.form1 = this;
-            formConfig.Show();
+            
+            if(!configAberta)
+            {
+                FromConfig formConfig = new FromConfig();
+                formConfig.form1 = this;
+                formConfig.Show();
+                configAberta = true;
+
+            }
         }
 
         public void RestartTime(int workValue, int restValue)
@@ -70,16 +64,11 @@ namespace MyPomodoroTimer
         {
             this.Hide();
             Form2 form2 = new Form2();
+            form2.minutesWork = _minutesWork;
+            form2.minutesRest = _minutesRest;
             form2.StartResting();
             form2.Show();
         }
-
-
-
-
-
-      
-
         private void btnLinkedinFrm1_Click(object sender, EventArgs e)
         {
             pages.GoToPage(pages.Linkedin);
@@ -89,9 +78,6 @@ namespace MyPomodoroTimer
         {
             pages.GoToPage(pages.Github);
         }
-
-
-
     }
 }
 

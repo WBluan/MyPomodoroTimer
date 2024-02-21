@@ -7,7 +7,7 @@ O My Pomodoro Timer é um programa simples, rápido e intuitivo para foco e prod
 Foi desenvolvido para ser uma alternativa gratuíta e funcional do conhecido método pomodoro.
 
 ## O que o software entrega? 🤔
-- **Grátis e Sem Anúncios:** Nosso app é totalmente gratuito, sem pegadinhas ou anúncios chatos. É só baixar e começar a usar!
+- **Grátis e Sem Anúncios:** O app é totalmente gratuito, sem pegadinhas ou anúncios chatos. É só baixar e começar a usar!
 - **Estilo Moderno:** Com uma interface limpa, o Pomodoro Timer torna a gestão do tempo uma experiência fácil e rápida.
 - **Sem autenticação:** Você não precisa criar uma conta, nem inserir dados pessoais para usar o app.
 - **Pausas Livres:** Com o My Pomodoro Timer, você pode pausar seu tempo de foco ou descanso e voltar quantas vezes quiser, sem que o tempo recomece.
