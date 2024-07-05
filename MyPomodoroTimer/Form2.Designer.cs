@@ -44,9 +44,8 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, -1);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(120, 80);
+            this.pictureBox1.Size = new System.Drawing.Size(90, 65);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -56,10 +55,9 @@
             this.lblWorkF2.BackColor = System.Drawing.Color.Transparent;
             this.lblWorkF2.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWorkF2.ForeColor = System.Drawing.Color.Black;
-            this.lblWorkF2.Location = new System.Drawing.Point(124, 15);
-            this.lblWorkF2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWorkF2.Location = new System.Drawing.Point(93, 12);
             this.lblWorkF2.Name = "lblWorkF2";
-            this.lblWorkF2.Size = new System.Drawing.Size(96, 45);
+            this.lblWorkF2.Size = new System.Drawing.Size(74, 35);
             this.lblWorkF2.TabIndex = 2;
             this.lblWorkF2.Text = "25:00";
             // 
@@ -74,10 +72,9 @@
             this.btnStartFrm2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnStartFrm2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnStartFrm2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartFrm2.Location = new System.Drawing.Point(247, 17);
-            this.btnStartFrm2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStartFrm2.Location = new System.Drawing.Point(185, 14);
             this.btnStartFrm2.Name = "btnStartFrm2";
-            this.btnStartFrm2.Size = new System.Drawing.Size(40, 43);
+            this.btnStartFrm2.Size = new System.Drawing.Size(30, 35);
             this.btnStartFrm2.TabIndex = 3;
             this.btnStartFrm2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStartFrm2.UseVisualStyleBackColor = false;
@@ -94,10 +91,9 @@
             this.btnPauseFrm2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnPauseFrm2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnPauseFrm2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPauseFrm2.Location = new System.Drawing.Point(295, 7);
-            this.btnPauseFrm2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPauseFrm2.Location = new System.Drawing.Point(221, 6);
             this.btnPauseFrm2.Name = "btnPauseFrm2";
-            this.btnPauseFrm2.Size = new System.Drawing.Size(56, 63);
+            this.btnPauseFrm2.Size = new System.Drawing.Size(42, 51);
             this.btnPauseFrm2.TabIndex = 6;
             this.btnPauseFrm2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPauseFrm2.UseVisualStyleBackColor = false;
@@ -114,10 +110,9 @@
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(361, 20);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(271, 16);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(39, 37);
+            this.button3.Size = new System.Drawing.Size(29, 30);
             this.button3.TabIndex = 7;
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.UseVisualStyleBackColor = false;
@@ -130,20 +125,20 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCoral;
-            this.ClientSize = new System.Drawing.Size(431, 76);
+            this.ClientSize = new System.Drawing.Size(323, 62);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnPauseFrm2);
             this.Controls.Add(this.btnStartFrm2);
             this.Controls.Add(this.lblWorkF2);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Form2";
+            this.Text = "My Pomodoro Timer";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
