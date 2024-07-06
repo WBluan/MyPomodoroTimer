@@ -49,6 +49,7 @@
     <Compile Include="Components\CustomLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Components\SettingsRepository.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +68,7 @@
     <Compile Include="Forms\FormConfig.Designer.cs">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\PomodoroSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Route\MyPages.cs" />
