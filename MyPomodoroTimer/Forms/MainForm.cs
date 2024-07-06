@@ -5,21 +5,18 @@ using System.Windows.Forms;
 
 namespace MyPomodoroTimer
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private readonly MyPages _pages = new MyPages();
         private int _minutesWork;
         private int _minutesRest;
         public bool ConfigAberta { get; set; } = false;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             MaximizeBox = false;
         }
-
-
-
         public void UpdateTimerDisplay()
         {
             int minutesWork = _minutesWork / 60;
@@ -30,11 +27,10 @@ namespace MyPomodoroTimer
             label2.Text = $"Concentração: {minutesWork:00}:{secondsWork:00}";
             label1.Text = $"Repouso: {minutesRest:00}:{secondsRest:00}";
         }
-
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 form2 = new Form2
+            PomodoroForm form2 = new PomodoroForm
             {
                 MinutesRest= _minutesRest,
                 MinutesWork = _minutesWork
@@ -62,7 +58,7 @@ namespace MyPomodoroTimer
         private void btnRest_Click(object sender, EventArgs e)
         {
             Hide();
-            Form2 form2 = new Form2
+            PomodoroForm form2 = new PomodoroForm
             {
                 MinutesRest = _minutesRest,
                 MinutesWork = _minutesWork
@@ -72,12 +68,12 @@ namespace MyPomodoroTimer
         }
         private void btnLinkedinFrm1_Click(object sender, EventArgs e)
         {
-            _pages.GoToPage(_pages.Linkedin);
+            _pages.GoToLinkedin();
         }
 
         private void btnGithubFrm1_Click(object sender, EventArgs e)
         {
-            _pages.GoToPage(_pages.Github);
+            _pages.GoToGithub();
         }
     }
 }

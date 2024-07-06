@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace MyPomodoroTimer
 {
-    public partial class Form2 : Form
+    public partial class PomodoroForm : Form
     {
         public int MinutesWork { get; set; }
         public int MinutesRest { get; set; }
@@ -12,7 +12,7 @@ namespace MyPomodoroTimer
         private int _repousoAtual;
         private bool _isWorking;
         private bool _isPaused;
-        public Form2()
+        public PomodoroForm()
         {
             InitializeComponent();
             _isWorking = true;
@@ -165,7 +165,7 @@ namespace MyPomodoroTimer
         private void button3_Click(object sender, EventArgs e)
         {
 
-            Form1 form1 = new Form1();
+            MainForm form1 = new MainForm();
             form1.Show();
             StopPomodoro();
         }

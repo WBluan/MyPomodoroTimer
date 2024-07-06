@@ -15,8 +15,8 @@ namespace MyPomodoroTimer
         private bool _isOpen = false;
         private int _tempoTrabalhoEscolhido;
         private int _tempoRepousoEscolhido;
-        private readonly Form1 _mainForm;
-        public FormConfig(Form1 mainForm)
+        private readonly MainForm _mainForm;
+        public FormConfig(MainForm mainForm)
         {
             _mainForm = mainForm;
             InitializeComponent();
