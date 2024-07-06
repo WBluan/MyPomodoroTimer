@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPomodoroTimer.Models;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,8 +7,7 @@ namespace MyPomodoroTimer
 {
     public partial class PomodoroForm : Form
     {
-        public int MinutesWork { get; set; }
-        public int MinutesRest { get; set; }
+        private PomodoroSettings _pomodoroSettings;
         private int _trabalhoAtual;
         private int _repousoAtual;
         private bool _isWorking;
@@ -15,6 +15,8 @@ namespace MyPomodoroTimer
         public PomodoroForm()
         {
             InitializeComponent();
+            _pomodoroSettings = new PomodoroSettings();
+            RestartTime();
             _isWorking = true;
             _isPaused = false;
 
@@ -31,13 +33,6 @@ namespace MyPomodoroTimer
         private void Form2_Load(object sender, EventArgs e)
         {
             InitializePosition();
-            if(MinutesRest == 0 && MinutesWork == 0)
-            {
-                MinutesWork = 25*60;
-                MinutesRest = 5*60;
-            }
-            _trabalhoAtual = MinutesWork;
-            _repousoAtual = MinutesRest;
             UpdateTimerDisplay(lblWorkF2);
 
         }
@@ -101,21 +96,14 @@ namespace MyPomodoroTimer
             int totalSeconds = _isWorking ? _trabalhoAtual : _repousoAtual;
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
-
-            if (_isWorking == true)
-            {
-                lblUpdate.Text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            }
-            else
-            {
-                lblUpdate.Text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            }
+            lblUpdate.Text = $"{minutes:00}:{seconds:00}";
+            lblUpdate.ForeColor = _isWorking? Color.Black: Color.Green;
         }
 
         private void RestartTime()
         {
-            _trabalhoAtual = MinutesWork;
-            _repousoAtual = MinutesRest;
+            _trabalhoAtual = _pomodoroSettings.MinutesWork *60;
+            _repousoAtual = _pomodoroSettings.MinutesRest * 60;
         }
 
         private void timerForm2_Tick(object sender, EventArgs e)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyPomodoroTimer.Models;
+using MyPomodoroTimer.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,25 +14,25 @@ namespace MyPomodoroTimer
 {
     public partial class FormConfig : Form
     {
-        private bool _isOpen = false;
-        private int _tempoTrabalhoEscolhido;
-        private int _tempoRepousoEscolhido;
+        private PomodoroSettings _pomodoroSettings;
         private readonly MainForm _mainForm;
         public FormConfig(MainForm mainForm)
         {
-            _mainForm = mainForm;
             InitializeComponent();
-            _isOpen = true;
-    }
+            _pomodoroSettings = new PomodoroSettings();
+            _mainForm = mainForm;
+            numericUpDown1.Value = _pomodoroSettings.MinutesWork;
+            numericUpDown2.Value = _pomodoroSettings.MinutesRest;
+        }
         private void DefinirTempo()
         {
-            _tempoTrabalhoEscolhido = (int)numericUpDown1.Value;
-            _tempoRepousoEscolhido = (int)numericUpDown2.Value;
+            _pomodoroSettings.MinutesWork = (int)numericUpDown1.Value;
+            _pomodoroSettings.MinutesRest = (int)numericUpDown2.Value;
         }
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             DefinirTempo();
-            _mainForm.RestartTime(_tempoTrabalhoEscolhido, _tempoRepousoEscolhido);
+            _mainForm.RestartTime(_pomodoroSettings.MinutesWork, _pomodoroSettings.MinutesRest);
             _mainForm.UpdateTimerDisplay();
             this.Close();
         }
