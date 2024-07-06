@@ -7,16 +7,15 @@ namespace MyPomodoroTimer
 {
     public partial class Form1 : Form
     {
-        MyPages pages = new MyPages();
-        Form2 form2 = new Form2(); 
-        public int _minutesWork;
-        public int _minutesRest;
-        public bool configAberta = false;
+        private readonly MyPages _pages = new MyPages();
+        private int _minutesWork;
+        private int _minutesRest;
+        public bool ConfigAberta { get; set; } = false;
 
         public Form1()
         {
             InitializeComponent();
-            this.MaximizeBox = false;
+            MaximizeBox = false;
         }
 
 
@@ -28,29 +27,29 @@ namespace MyPomodoroTimer
             int minutesRest= _minutesRest / 60;
             int secondsRest = _minutesRest % 60;
             
-            label2.Text = string.Format("Concentração: {0:00}:{1:00}", minutesWork, secondsWork);
-            label1.Text = string.Format("Repouso: {0:00}:{1:00}", minutesRest, secondsRest);
+            label2.Text = $"Concentração: {minutesWork:00}:{secondsWork:00}";
+            label1.Text = $"Repouso: {minutesRest:00}:{secondsRest:00}";
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 form2 = new Form2();
-            form2.minutesWork = _minutesWork;
-            form2.minutesRest = _minutesRest;
+            Form2 form2 = new Form2
+            {
+                MinutesRest= _minutesRest,
+                MinutesWork = _minutesWork
+            };
             form2.StartWorking();
             form2.Show();
         }
         private void btnConfig_Click(object sender, EventArgs e)
         {
             
-            if(!configAberta)
+            if(!ConfigAberta)
             {
-                FromConfig formConfig = new FromConfig();
-                formConfig.form1 = this;
+                FormConfig formConfig = new FormConfig(this);
                 formConfig.Show();
-                configAberta = true;
-
+                ConfigAberta = true;
             }
         }
 
@@ -62,21 +61,23 @@ namespace MyPomodoroTimer
 
         private void btnRest_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form2 form2 = new Form2();
-            form2.minutesWork = _minutesWork;
-            form2.minutesRest = _minutesRest;
+            Hide();
+            Form2 form2 = new Form2
+            {
+                MinutesRest = _minutesRest,
+                MinutesWork = _minutesWork
+            };
             form2.StartResting();
             form2.Show();
         }
         private void btnLinkedinFrm1_Click(object sender, EventArgs e)
         {
-            pages.GoToPage(pages.Linkedin);
+            _pages.GoToPage(_pages.Linkedin);
         }
 
         private void btnGithubFrm1_Click(object sender, EventArgs e)
         {
-            pages.GoToPage(pages.Github);
+            _pages.GoToPage(_pages.Github);
         }
     }
 }
