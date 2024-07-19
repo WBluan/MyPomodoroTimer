@@ -7,19 +7,20 @@ namespace MyPomodoroTimer
 {
     public partial class PomodoroForm : Form
     {
-        private PomodoroSettings _pomodoroSettings;
         private int _trabalhoAtual;
         private int _repousoAtual;
+        private int _minutesWork;
+        private int _minutesRest;
         private bool _isWorking;
         private bool _isPaused;
         public PomodoroForm()
         {
             InitializeComponent();
-            _pomodoroSettings = new PomodoroSettings();
-            RestartTime();
+            _minutesWork = PomodoroSettings.Instance.MinutesWork;
+            _minutesRest = PomodoroSettings.Instance.MinutesRest;
+            RestartTimes();
             _isWorking = true;
             _isPaused = false;
-
         }
 
         private void InitializePosition()
@@ -33,78 +34,79 @@ namespace MyPomodoroTimer
         private void Form2_Load(object sender, EventArgs e)
         {
             InitializePosition();
-            UpdateTimerDisplay(lblWorkF2);
-
+            UpdateTimerDisplay();
         }
 
         private void btnStartFrm2_Click(object sender, EventArgs e)
         {
-            if (_isWorking)
+            if(!_isPaused && timerForm2.Enabled) { return; }
+
+            if (_isPaused)
             {
-                if (_isPaused)
-                {
-                    _isPaused = false;
-                    btnPauseFrm2.Enabled = true;
-                    timerForm2.Start();
-                }
-                else
-                {
-                    StartWorking();
-                    UpdateTimerDisplay(lblWorkF2);
-                }
+                ResumeTimer();
             }
             else
             {
-                if (_isPaused)
+                if (_isWorking)
                 {
-                    _isPaused = false;
-                    btnPauseFrm2.Enabled = true;
-                    timerForm2.Start();
+                    StartWorking();
                 }
                 else
                 {
                     StartResting();
-                    UpdateTimerDisplay(lblWorkF2);
                 }
             }
         }
 
         public void StartResting()
         {
-            UpdateTimerDisplay(lblWorkF2);
-            lblWorkF2.ForeColor = Color.Green;
-            RestartTime();
             _isPaused = false;
             _isWorking = false;
+            RestartTimes();
+            UpdateTimerDisplay();
+            lblWorkF2.ForeColor = Color.Green;
             btnPauseFrm2.Enabled = true;
             timerForm2.Start();
         }
 
         public void StartWorking()
         {
-            UpdateTimerDisplay(lblWorkF2);
+            _isPaused = false;
+            _isWorking = true;
+            RestartTimes();
+            UpdateTimerDisplay();
             lblWorkF2.ForeColor = Color.Black;
-            RestartTime();
+            btnPauseFrm2.Enabled = true;
+            timerForm2.Start();
+        }
+        private void ResumeTimer()
+        {
             _isPaused = false;
             btnPauseFrm2.Enabled = true;
-            _isWorking = true;
             timerForm2.Start();
         }
 
-        private void UpdateTimerDisplay(Label lblUpdate)
+        private void UpdateTimerDisplay()
         {
             int totalSeconds = _isWorking ? _trabalhoAtual : _repousoAtual;
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
-            lblUpdate.Text = $"{minutes:00}:{seconds:00}";
-            lblUpdate.ForeColor = _isWorking? Color.Black: Color.Green;
+            lblWorkF2.Text = $"{minutes:00}:{seconds:00}";
+        }
+        private void ResetWorkTime()
+        {
+            _trabalhoAtual = _minutesWork * 60;
+        }
+        private void ResetRestTime()
+        {
+            _repousoAtual = _minutesRest * 60;
+        }
+        private void RestartTimes()
+        {
+            ResetWorkTime();
+            ResetRestTime();
         }
 
-        private void RestartTime()
-        {
-            _trabalhoAtual = _pomodoroSettings.MinutesWork *60;
-            _repousoAtual = _pomodoroSettings.MinutesRest * 60;
-        }
 
         private void timerForm2_Tick(object sender, EventArgs e)
         {
@@ -113,12 +115,12 @@ namespace MyPomodoroTimer
                 if(_trabalhoAtual > 0)
                 {
                    _trabalhoAtual--;
-                   UpdateTimerDisplay(lblWorkF2);
+                   UpdateTimerDisplay();
                 } 
-                else if (_trabalhoAtual == 0)
+                else
                 {
-                    _isWorking = false;
                     timerForm2.Stop();
+                    StartResting();
                 }
             }
             else
@@ -126,27 +128,25 @@ namespace MyPomodoroTimer
                 if(_repousoAtual > 0)
                 {
                     _repousoAtual--;
-                    
-                    UpdateTimerDisplay(lblWorkF2);
+                    UpdateTimerDisplay();
                 }
-                else if(_repousoAtual == 0)
+                else 
                 {
-                    _isWorking = true;
                     timerForm2.Stop();
+                    StartWorking();
                 }
             }
         }
 
         private void btnPauseFrm2_Click(object sender, EventArgs e)
         {
-            PauseWork();
+            PauseTimer();
         }
 
-        private void PauseWork()
+        private void PauseTimer()
         {
            _isPaused = true;
            timerForm2.Stop();
-           btnStartFrm2.Enabled = true;
            btnPauseFrm2.Enabled = false;
         }
 

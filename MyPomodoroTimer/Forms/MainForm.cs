@@ -11,18 +11,20 @@ namespace MyPomodoroTimer
         private readonly MyPages _pages;
         private int _minutesWork;
         private int _minutesRest;
-        private PomodoroSettings _pomodoroSettings;
         public bool ConfigAberta { get; set; } = false;
 
         public MainForm()
         {
             InitializeComponent();
-            _pomodoroSettings = new PomodoroSettings();
+            //Se inscrevendo nos eventos do PomodoroSettings
+            PomodoroSettings.Instance.OnWorkTimeChanged += PomodoroSettings_OnWorkTimeChanged;
+            PomodoroSettings.Instance.OnRestTimeChanged += PomodoroSettings_OnRestTimeChanged;
             _pages = new MyPages();
             MaximizeBox = false;
-            RestartTime(_pomodoroSettings.MinutesWork, _pomodoroSettings.MinutesRest);
+            RestartTime();
             UpdateTimerDisplay();
         }
+
         public void UpdateTimerDisplay()
         {
             int minutesWork = _minutesWork / 60;
@@ -65,10 +67,24 @@ namespace MyPomodoroTimer
             }
         }
 
-        public void RestartTime(int workValue, int restValue)
+        private void PomodoroSettings_OnWorkTimeChanged(object sender, EventArgs e)
         {
-            _minutesWork = workValue * 60;
-            _minutesRest = restValue * 60;
+            RestartTime();
+            UpdateTimerDisplay();
+        }
+
+        private void PomodoroSettings_OnRestTimeChanged(object sender, EventArgs e)
+        {
+            RestartTime();
+            UpdateTimerDisplay();
+        }
+
+        public void RestartTime()
+        {
+            int minutesWork = PomodoroSettings.Instance.MinutesWork;
+            int minutesRest = PomodoroSettings.Instance.MinutesRest;
+            _minutesWork = minutesWork * 60;
+            _minutesRest = minutesRest * 60;
         }
         private void btnLinkedinFrm1_Click(object sender, EventArgs e)
         {
@@ -79,6 +95,7 @@ namespace MyPomodoroTimer
         {
             _pages.GoToGithub();
         }
+
     }
 }
 

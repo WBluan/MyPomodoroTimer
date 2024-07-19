@@ -9,31 +9,44 @@ namespace MyPomodoroTimer.Models
 {
     public class PomodoroSettings
     {
-        private Settings _settings;
+        private static PomodoroSettings _instance;
+        public static PomodoroSettings Instance => _instance ?? (_instance = new PomodoroSettings());
+        private int _workTime;
+        private int _restTime;
         public int MinutesWork 
         {
-            get => _settings.MinutesWork;
+            get => _workTime;
             set
             {
                 if (value <=0) { throw new ArgumentException("Valor inválido"); }
-                _settings.MinutesWork = value;
-                _settings.Save();
+                _workTime = value;
+                OnWorkTimeChanged?.Invoke(this, EventArgs.Empty);
             } 
         }
         public int MinutesRest
         {
-            get => _settings.MinutesRest;
+            get => _restTime;
             set
             {
                 if(value <=0) { throw new ArgumentException("Valor inválido"); }
-                _settings.MinutesRest = value;
-                _settings.Save();
+                _restTime = value;
+                OnRestTimeChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-
         public PomodoroSettings()
         {
-            _settings = new Settings();
+            _workTime = Settings.Default.MinutesWork;
+            _restTime = Settings.Default.MinutesRest;
+        }
+
+        public event EventHandler OnWorkTimeChanged;
+        public event EventHandler OnRestTimeChanged;
+
+        public void SaveSettings()
+        {
+            Settings.Default.MinutesWork = _workTime;
+            Settings.Default.MinutesRest = _restTime;
+            Settings.Default.Save();
         }
     }
 }

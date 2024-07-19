@@ -14,26 +14,23 @@ namespace MyPomodoroTimer
 {
     public partial class FormConfig : Form
     {
-        private PomodoroSettings _pomodoroSettings;
         private readonly MainForm _mainForm;
         public FormConfig(MainForm mainForm)
         {
             InitializeComponent();
-            _pomodoroSettings = new PomodoroSettings();
+            MaximizeBox = false;
             _mainForm = mainForm;
-            numericUpDown1.Value = _pomodoroSettings.MinutesWork;
-            numericUpDown2.Value = _pomodoroSettings.MinutesRest;
-        }
-        private void DefinirTempo()
-        {
-            _pomodoroSettings.MinutesWork = (int)numericUpDown1.Value;
-            _pomodoroSettings.MinutesRest = (int)numericUpDown2.Value;
+            numericUpDown1.Value = PomodoroSettings.Instance.MinutesWork;
+            numericUpDown2.Value = PomodoroSettings.Instance.MinutesRest;
         }
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            DefinirTempo();
-            _mainForm.RestartTime(_pomodoroSettings.MinutesWork, _pomodoroSettings.MinutesRest);
-            _mainForm.UpdateTimerDisplay();
+            int minutesWork = (int)numericUpDown1.Value;
+            int minutesRest = (int)numericUpDown2.Value;
+
+            PomodoroSettings.Instance.MinutesWork = minutesWork;
+            PomodoroSettings.Instance.MinutesRest = minutesRest;
+            PomodoroSettings.Instance.SaveSettings();
             this.Close();
         }
 
