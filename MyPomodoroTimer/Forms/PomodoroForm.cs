@@ -7,8 +7,8 @@ namespace MyPomodoroTimer
 {
     public partial class PomodoroForm : Form
     {
-        private int _trabalhoAtual;
-        private int _repousoAtual;
+        private int _currentWork;
+        private int _currentRest;
         private int _minutesWork;
         private int _minutesRest;
         private bool _isWorking;
@@ -88,18 +88,18 @@ namespace MyPomodoroTimer
 
         private void UpdateTimerDisplay()
         {
-            int totalSeconds = _isWorking ? _trabalhoAtual : _repousoAtual;
+            int totalSeconds = _isWorking ? _currentWork : _currentRest;
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
             lblWorkF2.Text = $"{minutes:00}:{seconds:00}";
         }
         private void ResetWorkTime()
         {
-            _trabalhoAtual = _minutesWork * 60;
+            _currentWork = _minutesWork * 60;
         }
         private void ResetRestTime()
         {
-            _repousoAtual = _minutesRest * 60;
+            _currentRest = _minutesRest * 60;
         }
         private void RestartTimes()
         {
@@ -112,9 +112,9 @@ namespace MyPomodoroTimer
         {
             if(_isWorking)
             {
-                if(_trabalhoAtual > 0)
+                if(_currentWork > 0)
                 {
-                   _trabalhoAtual--;
+                   _currentWork--;
                    UpdateTimerDisplay();
                 } 
                 else
@@ -125,9 +125,9 @@ namespace MyPomodoroTimer
             }
             else
             {
-                if(_repousoAtual > 0)
+                if(_currentRest > 0)
                 {
-                    _repousoAtual--;
+                    _currentRest--;
                     UpdateTimerDisplay();
                 }
                 else 

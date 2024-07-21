@@ -11,7 +11,7 @@ namespace MyPomodoroTimer
         private readonly MyPages _pages;
         private int _minutesWork;
         private int _minutesRest;
-        public bool ConfigAberta { get; set; } = false;
+        public bool IsConfigOpen { get; set; } = false;
 
         public MainForm()
         {
@@ -59,11 +59,11 @@ namespace MyPomodoroTimer
         private void btnConfig_Click(object sender, EventArgs e)
         {
             
-            if(!ConfigAberta)
+            if(!IsConfigOpen)
             {
                 FormConfig formConfig = new FormConfig(this);
                 formConfig.Show();
-                ConfigAberta = true;
+                IsConfigOpen = true;
             }
         }
 
