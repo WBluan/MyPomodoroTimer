@@ -41,7 +41,7 @@ namespace MyPomodoroTimer
 
         private void FromConfig_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _mainForm.ConfigAberta = false;
+            _mainForm.IsConfigOpen = false;
         }
 
         private void CloseForm()

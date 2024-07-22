@@ -1,6 +1,8 @@
 ﻿using MyPomodoroTimer.Models;
 using System;
 using System.Drawing;
+using System.Drawing.Text;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace MyPomodoroTimer
@@ -13,6 +15,12 @@ namespace MyPomodoroTimer
         private int _minutesRest;
         private bool _isWorking;
         private bool _isPaused;
+        private Timer _timer; 
+        private float _labelOriginalSize;
+        private float _labelExpandSize = 24f;
+        private int _animationDuration = 1000;
+        private bool _isAnimating = false;
+        private DateTime _animationStartTime;
         public PomodoroForm()
         {
             InitializeComponent();
@@ -21,6 +29,10 @@ namespace MyPomodoroTimer
             RestartTimes();
             _isWorking = true;
             _isPaused = false;
+            _timer = new Timer();
+            _timer.Interval = 10;
+            _timer.Tick += AnimationTimer_Tick;
+            _labelOriginalSize = lblWorkF2.Font.Size;
         }
 
         private void InitializePosition()
@@ -81,6 +93,7 @@ namespace MyPomodoroTimer
         }
         private void ResumeTimer()
         {
+            StartAnimation();
             _isPaused = false;
             btnPauseFrm2.Enabled = true;
             timerForm2.Start();
@@ -162,5 +175,30 @@ namespace MyPomodoroTimer
         {
             this.Close();
         }
+
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now - _animationStartTime;
+            double progress = Math.Min(elapsed.TotalMilliseconds / _animationDuration, 1.0);
+            float newSize = (float)(_labelOriginalSize + (_labelExpandSize - _labelOriginalSize) * Math.Sin(progress * Math.PI));
+            lblWorkF2.Font = new Font(lblWorkF2.Font.FontFamily, newSize, lblWorkF2.Font.Style);
+            if (progress >= 1.0)
+            {
+                _timer.Stop();
+                _isAnimating = false;
+                // Garantir que a fonte retorne ao tamanho original após a animação
+                lblWorkF2.Font = new Font(lblWorkF2.Font.FontFamily, _labelOriginalSize, lblWorkF2.Font.Style);
+            }
+        }
+        private void StartAnimation()
+        {
+            if (!_isAnimating)
+            {
+                _isAnimating = true;
+                _animationStartTime = DateTime.Now;
+                _timer.Start();
+            }
+        }
+
     }
 }
