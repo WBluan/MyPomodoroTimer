@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyPomodoroTimer.Models;
+using MyPomodoroTimer.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,26 +14,23 @@ namespace MyPomodoroTimer
 {
     public partial class FormConfig : Form
     {
-        private bool _isOpen = false;
-        private int _tempoTrabalhoEscolhido;
-        private int _tempoRepousoEscolhido;
-        private readonly Form1 _mainForm;
-        public FormConfig(Form1 mainForm)
+        private readonly MainForm _mainForm;
+        public FormConfig(MainForm mainForm)
         {
-            _mainForm = mainForm;
             InitializeComponent();
-            _isOpen = true;
-    }
-        private void DefinirTempo()
-        {
-            _tempoTrabalhoEscolhido = (int)numericUpDown1.Value;
-            _tempoRepousoEscolhido = (int)numericUpDown2.Value;
+            MaximizeBox = false;
+            _mainForm = mainForm;
+            numericUpDown1.Value = PomodoroSettings.Instance.MinutesWork;
+            numericUpDown2.Value = PomodoroSettings.Instance.MinutesRest;
         }
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            DefinirTempo();
-            _mainForm.RestartTime(_tempoTrabalhoEscolhido, _tempoRepousoEscolhido);
-            _mainForm.UpdateTimerDisplay();
+            int minutesWork = (int)numericUpDown1.Value;
+            int minutesRest = (int)numericUpDown2.Value;
+
+            PomodoroSettings.Instance.MinutesWork = minutesWork;
+            PomodoroSettings.Instance.MinutesRest = minutesRest;
+            PomodoroSettings.Instance.SaveSettings();
             this.Close();
         }
 
@@ -42,7 +41,7 @@ namespace MyPomodoroTimer
 
         private void FromConfig_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _mainForm.ConfigAberta = false;
+            _mainForm.IsConfigOpen = false;
         }
 
         private void CloseForm()

@@ -1,6 +1,6 @@
 ﻿namespace MyPomodoroTimer
 {
-    partial class Form2
+    partial class PomodoroForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PomodoroForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblWorkF2 = new System.Windows.Forms.Label();
             this.btnStartFrm2 = new System.Windows.Forms.Button();
