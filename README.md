@@ -17,4 +17,4 @@ Foi desenvolvido para ser uma alternativa gratuíta e funcional do conhecido mé
 1. Clique no botão "Iniciar" para começar os 25 minutos de concentração
 2. Quando o tempo acabar, aproveite uma pausa de 5 minutos para fazer o que quiser.
 3. Repita o ciclo quantas vezes quiser.
-4. Para interromper o tempo de trabalho ou descanso, clique no botão "Stop", para fechar a janela de concentração e voltar para o menu de iniciação do aplciativo.
+4. Para interromper o tempo de trabalho ou descanso, clique no botão "Stop", para fechar a janela de concentração e voltar para a tela inicial do aplicativo.
