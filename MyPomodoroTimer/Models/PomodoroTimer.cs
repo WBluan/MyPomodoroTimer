@@ -33,6 +33,7 @@ namespace MyPomodoroTimer.Models
             _timer.Interval = 1000;
             _timer.Tick += Timer_Tick;
             StartWork();
+            OnTimeUpdated?.Invoke(_currentWork, _currentRest);
         }
 
         
@@ -40,9 +41,9 @@ namespace MyPomodoroTimer.Models
         {
             IsPaused = false;
             IsWorking = true;
+            IsStoped = false;
             RestartTimes ();
             _timer.Start();
-            LabelColorChanged?.Invoke(Color.Black);
             PauseButtonStateChanged?.Invoke(true);
         }
 
@@ -50,9 +51,9 @@ namespace MyPomodoroTimer.Models
         {
             IsPaused = false;
             IsWorking = false;
+            IsStoped = false;
             RestartTimes();
             _timer.Start();
-            LabelColorChanged?.Invoke(Color.Green);
             PauseButtonStateChanged?.Invoke(true);
         }
         public void Stop()
@@ -87,8 +88,10 @@ namespace MyPomodoroTimer.Models
             {
                 if (_currentWork > 0)
                 {
+                    LabelColorChanged?.Invoke(Color.Black);
                     _currentWork--;
                     OnTimeUpdated?.Invoke(_currentWork, _currentRest);
+
                 }
                 else
                 {
@@ -100,6 +103,7 @@ namespace MyPomodoroTimer.Models
             {
                 if(_currentRest > 0)
                 {
+                    LabelColorChanged?.Invoke(Color.Green);
                     _currentRest--;
                     OnTimeUpdated?.Invoke(_currentWork, _currentRest);
                 }

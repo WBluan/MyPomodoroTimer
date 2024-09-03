@@ -37,6 +37,12 @@ namespace MyPomodoroTimer
             wplayer = new WMPLib.WindowsMediaPlayer();
             wplayer.URL = caminhoDoArquivo;
 
+            this.Load += (sender, e) =>
+            {
+                _pomodoroTimer.OnTimeUpdated += OnTimerUpdated;
+                _pomodoroTimer.LabelColorChanged += OnLabelColorChanged;
+                _pomodoroTimer.PauseButtonStateChanged += OnPauseButtonStateChanged;
+            };
         }
 
         private void OnLabelColorChanged(Color color)
@@ -75,9 +81,6 @@ namespace MyPomodoroTimer
         private void Form2_Load(object sender, EventArgs e)
         {
             InitializePosition();
-            _pomodoroTimer.OnTimeUpdated += OnTimerUpdated;
-            _pomodoroTimer.LabelColorChanged += OnLabelColorChanged;
-            _pomodoroTimer.PauseButtonStateChanged += OnPauseButtonStateChanged;
         }
 
         private void btnStartFrm2_Click(object sender, EventArgs e)
@@ -92,11 +95,11 @@ namespace MyPomodoroTimer
             {
                 if (_pomodoroTimer.IsWorking)
                 {
-                    _pomodoroTimer.StartWork();
+                   StartWorking();
                 }
                 else
                 {
-                    _pomodoroTimer.StartRest();
+                    StartResting();
                 }
             }
         }

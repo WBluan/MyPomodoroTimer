@@ -57,9 +57,9 @@
             this.lblWorkF2.ForeColor = System.Drawing.Color.Black;
             this.lblWorkF2.Location = new System.Drawing.Point(93, 12);
             this.lblWorkF2.Name = "lblWorkF2";
-            this.lblWorkF2.Size = new System.Drawing.Size(74, 35);
+            this.lblWorkF2.Size = new System.Drawing.Size(73, 35);
             this.lblWorkF2.TabIndex = 2;
-            this.lblWorkF2.Text = "25:00";
+            this.lblWorkF2.Text = "00:00";
             // 
             // btnStartFrm2
             // 
@@ -122,7 +122,7 @@
             // 
             this.timerForm2.Interval = 1500;
             // 
-            // Form2
+            // PomodoroForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,7 +135,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form2";
+            this.Name = "PomodoroForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "My Pomodoro Timer";
             this.TopMost = true;
