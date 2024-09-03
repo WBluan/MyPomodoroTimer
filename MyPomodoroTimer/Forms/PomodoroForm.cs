@@ -9,32 +9,59 @@ namespace MyPomodoroTimer
 {
     public partial class PomodoroForm : Form
     {
-        private int _currentWork;
-        private int _currentRest;
         private int _minutesWork;
         private int _minutesRest;
-        private bool _isWorking;
-        private bool _isPaused;
         private Timer _timer; 
         private float _labelOriginalSize;
         private float _labelExpandSize = 24f;
         private int _animationDuration = 1000;
         private bool _isAnimating = false;
         private DateTime _animationStartTime;
+
         WMPLib.WindowsMediaPlayer wplayer;
+        string caminhoDoProjeto = AppDomain.CurrentDomain.BaseDirectory;
+        private PomodoroTimer _pomodoroTimer;
         public PomodoroForm()
         {
             InitializeComponent();
-            _minutesWork = PomodoroSettings.Instance.MinutesWork;
+             _minutesWork = PomodoroSettings.Instance.MinutesWork;
             _minutesRest = PomodoroSettings.Instance.MinutesRest;
-            RestartTimes();
-            _isWorking = true;
-            _isPaused = false;
+
+            _pomodoroTimer = new PomodoroTimer(_minutesWork, _minutesRest);
+
             _timer = new Timer();
-            _timer.Interval = 10;
+            _timer.Interval = 1000;
             _timer.Tick += AnimationTimer_Tick;
             _labelOriginalSize = lblWorkF2.Font.Size;
+            string caminhoDoArquivo = System.IO.Path.Combine(caminhoDoProjeto, "src", "alert.mp3");
             wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = caminhoDoArquivo;
+
+        }
+
+        private void OnLabelColorChanged(Color color)
+        {
+            lblWorkF2.Invoke((MethodInvoker)(() => {
+                lblWorkF2.ForeColor = color;
+            }));
+        }
+
+        private void OnPauseButtonStateChanged(bool isEnabled)
+        {
+            btnPauseFrm2.Invoke((MethodInvoker)(() => {
+                btnPauseFrm2.Enabled = isEnabled;
+            }));
+        }
+
+        private void OnTimerUpdated(int currentWork, int currentRest)
+        {
+            int totalSeconds = _pomodoroTimer.IsWorking ? currentWork : currentRest;
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+
+            lblWorkF2?.Invoke((MethodInvoker)(() => {
+                lblWorkF2.Text = $"{minutes:00}:{seconds:00}";
+            }));
         }
 
         private void InitializePosition()
@@ -48,126 +75,51 @@ namespace MyPomodoroTimer
         private void Form2_Load(object sender, EventArgs e)
         {
             InitializePosition();
-            UpdateTimerDisplay();
+            _pomodoroTimer.OnTimeUpdated += OnTimerUpdated;
+            _pomodoroTimer.LabelColorChanged += OnLabelColorChanged;
+            _pomodoroTimer.PauseButtonStateChanged += OnPauseButtonStateChanged;
         }
 
         private void btnStartFrm2_Click(object sender, EventArgs e)
         {
-            if(!_isPaused && timerForm2.Enabled) { return; }
+            if(!_pomodoroTimer.IsPaused) { return; }
 
-            if (_isPaused)
+            if (!_pomodoroTimer.IsStoped)
             {
-                ResumeTimer();
+                _pomodoroTimer.ResumeTimer();
             }
             else
             {
-                if (_isWorking)
+                if (_pomodoroTimer.IsWorking)
                 {
-                    StartWorking();
+                    _pomodoroTimer.StartWork();
                 }
                 else
                 {
-                    StartResting();
+                    _pomodoroTimer.StartRest();
                 }
             }
         }
 
         public void StartResting()
         {
-            _isPaused = false;
-            _isWorking = false;
-            RestartTimes();
-            UpdateTimerDisplay();
-            lblWorkF2.ForeColor = Color.Green;
-            btnPauseFrm2.Enabled = true;
-            timerForm2.Start();
+            _pomodoroTimer.StartRest();
         }
 
         public void StartWorking()
         {
-            _isPaused = false;
-            _isWorking = true;
-            RestartTimes();
-            UpdateTimerDisplay();
-            lblWorkF2.ForeColor = Color.Black;
-            btnPauseFrm2.Enabled = true;
-            timerForm2.Start();
-        }
-        private void ResumeTimer()
-        {
-            StartAnimation();
-            _isPaused = false;
-            btnPauseFrm2.Enabled = true;
-            timerForm2.Start();
-        }
-
-        private void UpdateTimerDisplay()
-        {
-            int totalSeconds = _isWorking ? _currentWork : _currentRest;
-            int minutes = totalSeconds / 60;
-            int seconds = totalSeconds % 60;
-            lblWorkF2.Text = $"{minutes:00}:{seconds:00}";
-        }
-        private void ResetWorkTime()
-        {
-            _currentWork = _minutesWork * 60;
-        }
-        private void ResetRestTime()
-        {
-            _currentRest = _minutesRest * 60;
-        }
-        private void RestartTimes()
-        {
-            ResetWorkTime();
-            ResetRestTime();
-        }
-
-
-        private void timerForm2_Tick(object sender, EventArgs e)
-        {
-            if(_isWorking)
-            {
-                if(_currentWork > 0)
-                {
-                   _currentWork--;
-                   UpdateTimerDisplay();
-                } 
-                else
-                {
-                    timerForm2.Stop();
-                    _isWorking = false;
-                }
-            }
-            else
-            {
-                if(_currentRest > 0)
-                {
-                    _currentRest--;
-                    UpdateTimerDisplay();
-                }
-                else 
-                {
-                    timerForm2.Stop();
-                    _isWorking = true;
-                }
-            }
+            _pomodoroTimer.StartWork();
         }
 
         private void btnPauseFrm2_Click(object sender, EventArgs e)
         {
-            PauseTimer();
+            _pomodoroTimer.Pause();
         }
 
-        private void PauseTimer()
-        {
-           _isPaused = true;
-           timerForm2.Stop();
-           btnPauseFrm2.Enabled = false;
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            _pomodoroTimer.Pause();
             MainForm form1 = new MainForm();
             form1.Show();
             StopPomodoro();

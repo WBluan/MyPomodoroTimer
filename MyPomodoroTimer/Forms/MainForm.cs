@@ -34,6 +34,7 @@ namespace MyPomodoroTimer
             label2.Text = $"Concentração: {minutesWork:00}:{secondsWork:00}";
             label1.Text = $"Repouso: {minutesRest:00}:{secondsRest:00}";
         }
+
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             ShowPomodoroForm(true);

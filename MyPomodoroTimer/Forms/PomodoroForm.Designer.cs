@@ -121,7 +121,6 @@
             // timerForm2
             // 
             this.timerForm2.Interval = 1500;
-            this.timerForm2.Tick += new System.EventHandler(this.timerForm2_Tick);
             // 
             // Form2
             // 
