@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Reflection.Emit;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 
 namespace MyPomodoroTimer
 {
@@ -21,6 +21,7 @@ namespace MyPomodoroTimer
         private int _animationDuration = 1000;
         private bool _isAnimating = false;
         private DateTime _animationStartTime;
+        WMPLib.WindowsMediaPlayer wplayer;
         public PomodoroForm()
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace MyPomodoroTimer
             _timer.Interval = 10;
             _timer.Tick += AnimationTimer_Tick;
             _labelOriginalSize = lblWorkF2.Font.Size;
+            wplayer = new WMPLib.WindowsMediaPlayer();
         }
 
         private void InitializePosition()
@@ -133,7 +135,7 @@ namespace MyPomodoroTimer
                 else
                 {
                     timerForm2.Stop();
-                    StartResting();
+                    _isWorking = false;
                 }
             }
             else
@@ -146,7 +148,7 @@ namespace MyPomodoroTimer
                 else 
                 {
                     timerForm2.Stop();
-                    StartWorking();
+                    _isWorking = true;
                 }
             }
         }
@@ -180,6 +182,7 @@ namespace MyPomodoroTimer
         {
             TimeSpan elapsed = DateTime.Now - _animationStartTime;
             double progress = Math.Min(elapsed.TotalMilliseconds / _animationDuration, 1.0);
+            //double progress = 1;
             float newSize = (float)(_labelOriginalSize + (_labelExpandSize - _labelOriginalSize) * Math.Sin(progress * Math.PI));
             lblWorkF2.Font = new Font(lblWorkF2.Font.FontFamily, newSize, lblWorkF2.Font.Style);
             if (progress >= 1.0)
