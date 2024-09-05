@@ -9,6 +9,8 @@ namespace MyPomodoroTimer
     public partial class MainForm : Form
     {
         private readonly MyPages _pages;
+        private readonly PomodoroTimer _pomodoroTimer;
+
         private int _minutesWork;
         private int _minutesRest;
         public bool IsConfigOpen { get; set; } = false;
@@ -16,11 +18,16 @@ namespace MyPomodoroTimer
         public MainForm()
         {
             InitializeComponent();
+
             //Se inscrevendo nos eventos do PomodoroSettings
             PomodoroSettings.Instance.OnWorkTimeChanged += PomodoroSettings_OnWorkTimeChanged;
             PomodoroSettings.Instance.OnRestTimeChanged += PomodoroSettings_OnRestTimeChanged;
+
+            _pomodoroTimer = new PomodoroTimer(PomodoroSettings.Instance.MinutesWork, PomodoroSettings.Instance.MinutesRest);
+
             _pages = new MyPages();
             MaximizeBox = false;
+
             RestartTime();
             UpdateTimerDisplay();
         }
@@ -34,6 +41,7 @@ namespace MyPomodoroTimer
             label2.Text = $"Concentração: {minutesWork:00}:{secondsWork:00}";
             label1.Text = $"Repouso: {minutesRest:00}:{secondsRest:00}";
         }
+
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             ShowPomodoroForm(true);
@@ -45,7 +53,7 @@ namespace MyPomodoroTimer
         private void ShowPomodoroForm(bool startWorking)
         {
             Hide();
-            PomodoroForm pomodoroForm = new PomodoroForm();
+            PomodoroForm pomodoroForm = new PomodoroForm(_pomodoroTimer);
             if (startWorking)
             {
                 pomodoroForm.StartWorking();
