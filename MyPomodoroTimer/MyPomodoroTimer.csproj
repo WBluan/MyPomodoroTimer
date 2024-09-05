@@ -69,6 +69,7 @@
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\PomodoroSettings.cs" />
+    <Compile Include="Models\PomodoroTimer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Route\MyPages.cs" />
@@ -104,9 +105,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\music\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="MediaPlayer">
       <Guid>{22D6F304-B0F6-11D0-94AB-0080C74C7E95}</Guid>
